@@ -1,0 +1,27 @@
+/* styles.css */
+
+/* Full height frame for the welcome section */
+.welcome-frame {
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background color */
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.carousel-inner img {
+    height: 300px; /* Set a fixed height for the carousel images */
+    object-fit: cover; /* Ensure images cover the area without stretching */
+}
+
+.welcome-frame h2 {
+	font-family: 'Poppins';
+    font-size: 2.5rem; /* Font size for the main heading */
+    margin-bottom: 1rem; /* Space below the heading */
+}
+
+.welcome-frame p {
+    font-size: 1.2rem; /* Font size for paragraphs */
+    text-align: center; /* Center text */
+}

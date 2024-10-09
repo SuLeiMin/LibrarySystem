@@ -9,6 +9,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <title>Library Management System</title>
 </head>
@@ -23,11 +25,21 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="#">Register</span></a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-			</ul>
+			
+			<!-- Search form with input and button -->
+			<form class="d-flex ms-auto" action="/search" method="GET">
+				<div class="col-md-4">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                </div>
+				<button class="btn btn-light" type="submit">
+					<i class="bi bi-search"></i> Search
+				</button>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+					<li class="nav-item active"><a class="nav-link" href="#">Register</a></li>
+				</ul>
+				
+			</form>
 		</div>
 	</nav>
 	<br>
@@ -39,13 +51,103 @@
 			<tr:block th:each="info : ${list}">
 				<p th:text="${info}"></p>
 			</tr:block>
-
+	
 		</table>
-
+		
+		
 	</div>
+	
+	<div class="row">
+        <!-- Welcome Frame on the left half -->
+        <div class="col-md-6 welcome-frame">
+            <div class="text-center">
+                <h2>Welcome to the Library Management System</h2>
+                <p>Explore our vast collection of books, manage your account, and find your next read.</p>
 
-　　　<a th:href="@{/showCategory}">Go to Category link</a> 
-	<div class="container text-center my-5"></div>
+                <!-- Carousel -->
+                <div id="libraryCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="/images/PD.jpg" class="d-block w-100" alt="Book 1">
+                                </div>
+                                <div class="col">
+                                    <img src="/images/SE.jpg" class="d-block w-100" alt="Book 2">
+                                </div>
+                                <div class="col">
+                                    <img src="/images/UML.jpg" class="d-block w-100" alt="Book 3">
+                                </div>
+                            </div>
+                        </div>
+                         <div class="carousel-item">
+                            <div class="row">
+                                 <div class="col">
+                                    <img src="/images/DS.jpg" class="d-block w-100" alt="Book 1">
+                                </div>
+                                <div class="col">
+                                    <img src="/images/AI.jpg" class="d-block w-100" alt="Book 2">
+                                </div>
+                                <div class="col">
+                                    <img src="/images/Java.jpg" class="d-block w-100" alt="Book 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#libraryCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#libraryCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content on the right half -->
+        <div class="col-md-6">
+            <div class="container my-5">
+                <p>This is the main content area.</p>
+            </div>
+        </div>
+    </div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+        <!-- Conditionally show search results if present -->
+        <div th:if="${searchResults}">
+            <h3>Search Results:</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Published Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${searchResults}">
+                        <td th:text="${book.title}"></td>
+                        <td th:text="${book.author}"></td>
+                        <td th:text="${book.publishedDate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Show message if no search results are found -->
+        <div th:if="${#lists.isEmpty(searchResults)}">
+            <!-- <p>何も見つかりません！！</p>-->
+        </div>
+    </div>
+    
+	
+
+	<a th:href="@{/showCategory}">Go to Category link</a> 
+	
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -60,6 +162,8 @@
 		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 		crossorigin="anonymous"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	
 
 </body>
 </html>
